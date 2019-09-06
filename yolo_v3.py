@@ -155,7 +155,7 @@ def _detection_layer(inputs, num_classes, anchors, img_size, data_format):
     box_centers = box_centers * stride
 
     anchors = tf.tile(anchors, [dim, 1])
-    box_sizes = tf.exp(box_sizes) * anchors
+    box_sizes = tf.exp(box_sizes) * tf.to_float(anchors)
     box_sizes = box_sizes * stride
 
     detections = tf.concat([box_centers, box_sizes, confidence], axis=-1)

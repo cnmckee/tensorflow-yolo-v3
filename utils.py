@@ -132,8 +132,8 @@ def detections_boxes(detections):
     """
     center_x, center_y, width, height, attrs = tf.split(
         detections, [1, 1, 1, 1, -1], axis=-1)
-    w2 = width / 2
-    h2 = height / 2
+    w2 = width 
+    h2 = height
     x0 = center_x - w2
     y0 = center_y - h2
     x1 = center_x + w2
@@ -160,7 +160,7 @@ def _iou(box1, box2):
     int_x1 = min(b1_x1, b2_x1)
     int_y1 = min(b1_y1, b2_y1)
 
-    int_area = (int_x1 - int_x0) * (int_y1 - int_y0)
+    int_area = max(int_x1 - int_x0, 0) * max(int_y1 - int_y0, 0)
 
     b1_area = (b1_x1 - b1_x0) * (b1_y1 - b1_y0)
     b2_area = (b2_x1 - b2_x0) * (b2_y1 - b2_y0)
